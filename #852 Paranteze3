@@ -1,0 +1,57 @@
+#include <fstream>
+#include <vector>
+#include <algorithm>
+#include <stack>
+#include <string>
+std::string nume="paranteze3";
+std::ifstream fin(nume+".in");
+std::ofstream fout(nume+".out");
+std::stack<char>pardesc;
+std::string r;
+int main()
+{
+    int n;
+    fin>>n;
+    for(int j=0;j<n;j++)
+    {
+        bool ok=true;
+        r.clear();
+        fin>>r;
+        //fout<<r;
+        for(int i=0;i<r.length();i++)
+        {
+            if(r[i]==']')
+            {
+                if(pardesc.size()>0&&pardesc.top()=='[')
+                {
+                    pardesc.pop();
+                }
+                else
+                {
+                    ok=false;break;
+                }
+            }
+            else if(r[i]==')')
+            {
+                if(pardesc.size()>0&&pardesc.top()=='(')
+                {
+                    pardesc.pop();
+                }
+                else
+                {
+                    ok=false;break;
+                }
+            }
+            else if(r[i]=='('||r[i]=='[')
+            {
+                pardesc.push(r[i]);
+            }
+            //fout<<r[i];
+        }
+        if(ok==true&&pardesc.empty())
+        {
+            fout<<1<<'\n';
+        }
+        else fout<<0<<'\n';
+    }
+}
