@@ -16,6 +16,10 @@ int main()
     {
         bool ok=true;
         r.clear();
+        while(!pardesc.empty())
+        {
+			pardesc.pop();
+        }
         fin>>r;
         //fout<<r;
         for(int i=0;i<r.length();i++)
